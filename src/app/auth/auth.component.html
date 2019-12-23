@@ -11,23 +11,25 @@
                 <h3>Welcome to the online flight portal. </h3>
                   <span class="white-text center-align">Please login to view flight information in 10 different cities
                       </span>
-              
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="email" type="email" class="validate white-text">
-                          <label for="email white-text">Email</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="input-field col s12">
-                            <input id="password" type="password" class="validate white-text">
-                            <label for="password white-text">Password</label>
-                          </div>
-                        </div>
-                      <div class="row">
-                          <a  (click)="goToMain()" class="waves-effect waves-light btn-large red"><i class="material-icons right">send</i>Login</a>
-                        </div>
-  
+
+
+                      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                          <div class="row">
+                              <div class="input-field col s12">
+                                <input id="email" type="email" formControlName="user" class="validate white-text">
+                                <label for="email white-text">Email</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="password" type="password" formControlName="password" class="validate white-text">
+                                  <label for="password white-text">Password</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                  <button type="submit" (click)="goToMain()" class="waves-effect waves-light btn-large red"><i class="material-icons right">send</i>Login</button>
+                                </div>  
+                        </form>
               </div>
               <div class="col s12 m2 l2"></div>
             </div>

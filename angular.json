@@ -25,13 +25,15 @@
               "node_modules/materialize-css/dist/css/materialize.css",
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/animate.css/animate.css",
-              "node_modules/sweetalert2/dist/sweetalert2.css"
+              "node_modules/sweetalert2/dist/sweetalert2.css",
+              "src/app/helpers/select.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/hammerjs/hammer.js",
               "node_modules/materialize-css/dist/js/materialize.js",
-              "node_modules/sweetalert2/dist/sweetalert2.js"
+              "node_modules/sweetalert2/dist/sweetalert2.js",
+              "src/app/helpers/select.js"
             ]
           },
           "configurations": {
