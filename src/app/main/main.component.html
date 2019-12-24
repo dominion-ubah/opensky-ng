@@ -38,23 +38,23 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Flight Information</h4>
-      <div class="row">
+      
+      <div class="row border"  >
         <div class="col s12 m6 l4">
             <div class=" col s12">  
-                <form [formGroup]="arrivalTimeForm" (ngSubmit)="submitArrival()">
+                <form [formGroup]="arrivalTimeForm" >
               <label>Arrivals</label>
               <select class="browser-default" formControlName="arrivalTime" (change)="submitArrival($event)" >
                 
                 <option value="" disabled selected>Choose your option</option>
                 <option  *ngFor="let times of timeOptions" [value]="times.value">{{times.label}}</option>
               </select>
-              <button>ok</button>
               </form>
             </div>
           </div>
           <div class="col s12 m6 l4">
             <div class="col s12">
-                <form [formGroup]="departureTimeForm" (ngSubmit)="submitDeparture()">
+                <form [formGroup]="departureTimeForm">
               <label>Departures</label>
               <select class="browser-default" formControlName="departureTime" (change)="submitDeparture($event)">
                 <option value="" disabled selected>Choose your option</option>
@@ -65,19 +65,62 @@
         </div>
         
       </div>
-      <div class="row">
-          <div class="col">
+      <div class="row" >
+          <div class="col s12 m6 l6">
+              Arrivals :
+              <div *ngIf="arrivalArr">
+                  <ul class="collapsible">
+                      <li *ngFor="let a of arrivalArr">
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i> Arrival Airport: {{a.estArrivalAirport}} - Departure Airport: {{a.estDepartureAirport}}  </div>
+                        <div class="collapsible-body"><span>
+                          <ul>
+                            <li>Call Sign: {{a.callsign}}</li>
+                            <li>Candiate Count: {{a.departureAirportCandidatesCount}}</li>
+                            <li>First Seen: {{a.firstSeen}}</li>
+                            <li>Last Seen: {{a.lastSeen}}</li>
+                            <li>ICAO 24: {{a.icao24}}</li>
+                          </ul>
+                        </span></div>
+                      </li>
+                    </ul>
+                <div> 
+                </div>
+              </div>
+              <div *ngIf="!arrivalArr">
+                  <p style="color:grey; font-style: italic;">No Arrival Flight Data</p>
+              </div>
+          </div>
+          <div class="col s12 m6 l6">
               Departures :
               <div *ngIf="departureArr">
-                {{console.log("as",departureArr)}}
-                <div *ngFor="let a of departureArr"> 
-                  {{a.icao}}
+                  <ul class="collapsible">
+                      <li *ngFor="let a of departureArr">
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Departure Airport: {{a.estDepartureAirport}} - Arrival Airport: {{a.estArrivalAirport}} </div>
+                        <div class="collapsible-body"><span>
+                          <ul>
+                            <li>Call Sign: {{a.callsign}}</li>
+                            <li>Candiate Count: {{a.departureAirportCandidatesCount}}</li>
+                            <li>First Seen: {{a.firstSeen}}</li>
+                            <li>Last Seen: {{a.lastSeen}}</li>
+                            <li>ICAO 24: {{a.icao24}}</li>
+                          </ul>
+                        </span></div>
+                      </li>
+                    </ul>
+                <div> 
+                </div>
+              </div>
+              <div *ngIf="!departureArr">
+                  <p style="color:grey; font-style: italic;">No Departure Flight Data</p>
+                <div> 
                 </div>
               </div>
           </div>
+          
       </div>
     </div>
     <div class="modal-footer">
-      <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <!-- <a class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
     </div>
+
   </div>

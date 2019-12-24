@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_API_URL } from '../helpers/customConfig';
-import { httpOptions } from '../helpers/customConfig';
+import { BASE_API_URL, ICAO_API_URL } from '../helpers/customConfig';
+import { httpOptions, httpOptionsForICAO } from '../helpers/customConfig';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +32,10 @@ export class MainService {
      secondsSinceEpoch:any = Math.round(timeSt / 1000),
      dsecondsSinceEpoch:any = Math.round(Date.now() / 1000);
      return this.http.get(`${BASE_API_URL.baseDev}flights/departure?airport=` + icao + '&begin=' + parseInt(secondsSinceEpoch) + '&end=' + parseInt(dsecondsSinceEpoch), httpOptions)
+  }
+  
+  getAirportByIcao(icao) {
+     return this.http.get(`${ICAO_API_URL.baseDev}?api_key=7657d380-259a-11ea-807b-d73a9e51e49e&airports=`+icao+`&format=json`, httpOptionsForICAO)
   }
   
   

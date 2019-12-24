@@ -11,6 +11,7 @@ import { switchMap } from 'rxjs/operators';
 export class AuthComponent implements OnInit {
 
   loginForm;
+  errors
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -28,8 +29,12 @@ export class AuthComponent implements OnInit {
   onSubmit(userData) {
     // Process checkout data here
     console.warn('Your order has been submitted', userData);
-    this.loginForm.reset();
-    this.goToMain()
+    if(userData.user === 'demo' && userData.password === 'demo') {
+      this.loginForm.reset();
+      this.goToMain()
+    } else {
+       this.errors = "Please ensure your login credentials are correct"
+    }
   }
 
   goToMain() {

@@ -1,20 +1,12 @@
 export const timeOptions = [
-    { value: 900, label: "900 Minutes" },
-    { value: 1000, label: "1000 Minutes" },
-    { value: 1200, label: "1200 Minutes" },
-    { value: 1400, label: "1400 Minutes" },
-    { value: 1600, label: "1600 Minutes" },
-    { value: 1800, label: "1800 Minutes" },
-    { value: 2000, label: "2000 Minutes" },
-    { value: 2200, label: "2200 Minutes" },
-    { value: 2400, label: "2400 Minutes" },
-
-    { value: 2850, label: "2850 Minutes" },
-    { value: 3000, label: "3000 Minutes" },
-    { value: 3600, label: "3600 Minutes" },
-    { value: 3940, label: "3940 Minutes" },
-    { value: 4280, label: "4280 Minutes" },
-    { value: 4400, label: "4400 Minutes" },
+    { value: 10, label: "10 Minutes" },
+    { value: 360, label: "6 Hrs" },
+    { value: 720, label: "12 Hrs" },
+    { value: 1440, label: "1 Day" },
+    { value: 2880, label: "2 Days" },
+    { value: 4320, label: "3 Days" },
+    { value: 5760, label: "6 Days" },
+    { value: 10080, label: "7 Days" },
 ]
 
   export const cities = [

@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Abel|Catamaran|Comfortaa|Dosis|Exo|Josefin+Sans|Montserrat|Open+Sans|Quicksand|Ubuntu&display=swap');
+/* Font Family */
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+button, a{
+    /* font-family: 'Abel', sans-serif; */
+    font-family: 'Catamaran', sans-serif;
+}
+h3, h2, h1, h4 {
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Comfortaa', cursive; */
+    font-weight: bold;
+    
+}
+ h5 {
+    font-family: 'Quicksand', sans-serif;
+}

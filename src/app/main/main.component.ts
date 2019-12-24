@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   arrivalTimeForm: FormGroup;
   departureTimeForm: FormGroup;
   states = [];
+  loading:boolean=false;
   
   constructor(
     private mainService: MainService,
@@ -39,10 +40,15 @@ export class MainComponent implements OnInit {
     //   alert('I am Called From jQuery');
     // });
 
+    this.showAirportByIcao('LFPG')
+
     $(document).ready(function(){
       $('.modal').modal();
     });
-
+    
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
     this.showStates( )
   }
 
@@ -56,24 +62,77 @@ export class MainComponent implements OnInit {
     )
   }
 
-  submitArrival() {
+  submitArrival(e) {
+    this.loading = true;
     let icao =localStorage.getItem('icao'),
     endTime  = this.arrivalTimeForm.value.arrivalTime
     this.mainService.getArrivalByAirport(endTime, icao)
-    .subscribe(data =>  console.log('arrival', data))
-  }
+    .subscribe(data =>  {
+      // console.log('departure', data)})
+       let newD = JSON.parse(JSON.stringify(data));
 
-  submitDeparture() {
+       console.log('data', newD)
+       this.loading = false;
+       this.arrivalArr = newD.map(e => {
+         return {
+          icao24: e.icao24,
+          firstSeen: e.firstSeen,
+          estDepartureAirport: e.estDepartureAirport,
+          // estDepartureAirport: this.showAirportByIcao(e.estDepartureAirport),
+          lastSeen: e.lastSeen,
+          estArrivalAirport: e.estArrivalAirport,
+          // estArrivalAirport: this.showAirportByIcao(e.estArrivalAirport),
+          callsign: e.callsign,
+          estDepartureAirportHorizDistance: e.estDepartureAirportHorizDistance,
+          estDepartureAirportVertDistance: e.estDepartureAirportVertDistance,
+          estArrivalAirportHorizDistance: e.estArrivalAirportHorizDistance,
+          estArrivalAirportVertDistance: e.estArrivalAirportVertDistance,
+          departureAirportCandidatesCount: e.departureAirportCandidatesCount,
+          arrivalAirportCandidatesCount: e.arrivalAirportCandidatesCount
+         }
+       })
+    // .subscribe(data =>  console.log('arrival', data))
+  },
+  error => {
+    console.error(error)
+    this.loading = false;
+  }
+  )
+  
+}
+
+  submitDeparture(e) {
+    this.loading = true;
     let icao =localStorage.getItem('icao'),
     endTime  = this.departureTimeForm.value.departureTime
     console.log('data sent',endTime, icao);
     this.mainService.getDepartureByAirport(endTime, icao)
     .subscribe(data =>  {
+      this.loading = false;
       // console.log('departure', data)})
-       let newD = data;
+       let newD = JSON.parse(JSON.stringify(data));
+
        console.log('data', newD)
        this.departureArr = newD
+    },
+    error => {
+      console.error(error)
+      this.loading = false;
     })
+    
+  }
+
+  showAirportByIcao(e) {
+    
+    this.mainService.getAirportByIcao(e)
+    .subscribe(data =>  
+      // console.log('departure', data)})
+      //  let newD = data
+
+       console.log('data', data)
+      //  return newD.Location_Nam
+      //  this.departureArr = newD
+    )
     
   }
 
